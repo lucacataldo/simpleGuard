@@ -15,13 +15,18 @@ It will probably look something like this
 
         var express = require("express");
         var app = express();
-        var simpleGuard = require("simpleGuard.js") // if simpleGuard.js is located in the root
+
+        // what you need
+        var simpleGuard = require("./simpleGuard.js") // if simpleGuard.js is located in the project root dir
         simpleGuard(app, "password", "super secret string", 20)
 
         //The rest of your routes
         app.get("/", (req, res)=>{
-
+            res.send("you're good!")
         })
+
+
+        app.listen(80)
 
 
 That's it! You will be prompted to provide a password to visit any route on your app until you provide the correct one. Then, a session cookie will be created which will authorize you until it expires or you log out.

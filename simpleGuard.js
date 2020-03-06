@@ -59,8 +59,6 @@ module.exports = (app, password, secret, activeDuration = 15) => {
 	// "password" is passed as a URL parameter but it's 
 	// good enough here and keeps dependencies to a minimum 
 	app.get("/simpleGuard", (req, res) => {
-		console.log(req.query.invalid)
-
 		if (req.query.invalid == false || req.query.invalid == undefined) {
 			// we don't really care about valid html here, just send a form
 			res.send(`
@@ -89,7 +87,7 @@ module.exports = (app, password, secret, activeDuration = 15) => {
 
 	})
 
-	// check the cookie
+	// check the cookie on every request
 	app.use((req, res, next) => {
 		req.simpleGuard.isValid === true ? next() : res.redirect("/simpleGuard");
 	})
