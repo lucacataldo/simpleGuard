@@ -10,14 +10,9 @@ try {
 	process.exit()
 }
 
-
-
 var config = {
 	password: "secret"
 }
-
-
-
 
 /**
  * @function start A constructor that initializes and starts the module
@@ -94,14 +89,10 @@ module.exports = (app, password, secret, activeDuration = 15) => {
 
 	})
 
-
 	// check the cookie
 	app.use((req, res, next) => {
 		req.simpleGuard.isValid === true ? next() : res.redirect("/simpleGuard");
 	})
-
-
-
 
 }
 
